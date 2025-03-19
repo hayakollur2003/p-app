@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Production Intelligence Hub</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            --secondary-gradient: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            --accent-color: #ff6b6b;
+            --background-light: #f4f6f9;
+            --card-shadow: 0 15px 35px rgba(50,50,93,.1), 0 5px 15px rgba(0,0,0,.07);
+        }
+
+        body {
+            background-color: var(--background-light);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .registration-header {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 2rem 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .registration-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: rgba(255,255,255,0.05);
+            transform: rotate(-45deg);
+        }
+
+        .card-custom {
+            border: none;
+            border-radius: 15px;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .card-custom::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--primary-gradient);
+        }
+
+        .card-custom:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(50,50,93,.2), 0 10px 20px rgba(0,0,0,.1);
+        }
+
+        .btn-custom {
+            background: var(--primary-gradient);
+            color: white;
+            border: none;
+            transition: transform 0.3s ease;
+        }
+
+        .btn-custom:hover {
+            transform: scale(1.05);
+            color: white;
+        }
+
+        .input-group-text {
+            background: var(--secondary-gradient);
+            color: white;
+            border: none;
+        }
+
+        .form-control:focus {
+            box-shadow: 0 0 0 0.25rem rgba(106, 17, 203, 0.25);
+            border-color: #6a11cb;
+        }
+
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .features-card {
+            height: 100%;
+        }
+
+        .features-icon {
+            background: var(--secondary-gradient);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .plan-card {
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .plan-popular {
+            position: absolute;
+            top: 10px;
+            right: -30px;
+            background: var(--accent-color);
+            color: white;
+            padding: 5px 40px;
+            transform: rotate(45deg);
+            z-index: 2;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .footer {
+            margin-top: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="registration-header text-center">
+        <div class="container">
+            <h1 class="display-4 mb-3 animate-float">
+                <i class="fas fa-chart-line me-3"></i>Production Intelligence Hub
+            </h1>
+            <p class="lead">Create your account to access intelligent manufacturing optimization</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container my-5">
+        <div class="row g-4">
+            <div class="col-md-6">
+                <!-- Registration Form -->
+                <div class="card card-custom h-100">
+                    <div class="card-body p-4">
+                        <h3 class="card-title mb-4 text-center">
+                            <i class="fas fa-user-plus me-2"></i>Create Account
+                        </h3>
+                        <form id="registrationForm">
+                            <!-- Company Information -->
+                            <div class="mb-4">
+                                <h5><i class="fas fa-building me-2"></i>Company Information</h5>
+                                <div class="mb-3">
+                                    <div class="input-group">
+                                        <span class="input-group-text">
+                                            <i class="fas fa-building"></i>
+                                        </span>
+                                        <input type="text" class="form-control" id="companyName" placeholder="Company Name" required>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="input-group">
+                                        <span class="input-group-text">
+                                            <i class="fas fa-industry"></i>
+                                        </span>
+                                        <select class="form-select" id="industryType" required>
+                                            <option value="" selected disabled>Select Industry</option>
+                                            <option value="manufacturing">Manufacturing</option>
+                                            <option value="automotive">Automotive</option>
+                                            <option value="electronics">Electronics</option>
+                                            <option value="pharmaceuticals">Pharmaceuticals</option>
+                                            <option value="food">Food & Beverage</option>
+                                            <option value="other">Other</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Personal Information -->
+                            <div class="mb-4">
+                                <h5><i class="fas fa-user me-2"></i>Personal Information</h5>
+                                <div class="row mb-3">
+                                    <div class="col">
+                                        <div class="input-group">
+                                            <span class="input-group-text">
+                                                <i class="fas fa-user"></i>
+                                            </span>
+                                            <input type="text" class="form-control" id="firstName" placeholder="First Name" required>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="input-group">
+                                            <span class="input-group-text">
+                                                <i class="fas fa-user"></i>
+                                            </span>
+                                            <input type="text" class="form-control" id="lastName" placeholder="Last Name" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="input-group">
+                                        <span class="input-group-text">
+                                            <i class="fas fa-briefcase"></i>
+                                        </span>
+                                        <input type="text" class="form-control" id="jobTitle" placeholder="Job Title" required>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="input-group">
+                                        <span class="input-group-text">
+                                            <i class="fas fa-envelope"></i>
+                                        </span>
+                                        <input type="email" class="form-control" id="email" placeholder="Business Email" required>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="input-group">
+                                        <span class="input-group-text">
+                                            <i class="fas fa-phone"></i>
+                                        </span>
+                                        <input type="tel" class="form-control" id="phone" placeholder="Phone Number">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Account Information -->
+                            <div class="mb-4">
+                                <h5><i class="fas fa-lock me-2"></i>Account Information</h5>
+                                <div class="mb-3">
+                                    <div class="input-group">
+                                        <span class="input-group-text">
+                                            <i class="fas fa-user-circle"></i>
+                                        </span>
+                                        <input type="text" class="form-control" id="username" placeholder="Username" required>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="input-group">
+                                        <span class="input-group-text">
+                                            <i class="fas fa-key"></i>
+                                        </span>
+                                        <input type="password" class="form-control" id="password" placeholder="Password" required>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="input-group">
+                                        <span class="input-group-text">
+                                            <i class="fas fa-check-double"></i>
+                                        </span>
+                                        <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password" required>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Subscription Plan -->
+                            <div class="mb-4">
+                                <h5><i class="fas fa-tags me-2"></i>Select Plan</h5>
+                                <div class="mb-3">
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="radio" name="subscriptionPlan" id="basicPlan" value="basic" checked>
+                                        <label class="form-check-label" for="basicPlan">
+                                            <strong>Basic Plan</strong> - $99/month
+                                        </label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="radio" name="subscriptionPlan" id="proPlan" value="pro">
+                                        <label class="form-check-label" for="proPlan">
+                                            <strong>Pro Plan</strong> - $199/month
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="subscriptionPlan" id="enterprisePlan" value="enterprise">
+                                        <label class="form-check-label" for="enterprisePlan">
+                                            <strong>Enterprise Plan</strong> - $399/month
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Terms & Conditions -->
+                            <div class="mb-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="termsCheck" required>
+                                    <label class="form-check-label" for="termsCheck">
+                                        I agree to the <a href="#" data-bs-toggle="modal" data-bs-target="#termsModal">Terms and Conditions</a>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <button type="submit" class="btn btn-custom w-100 py-2">
+                                <i class="fas fa-paper-plane me-2"></i>Register Now
+                            </button>
+                        </form>
+                        
+                        <div class="mt-3 text-center">
+                            <p>Already have an account? <a href="login.html">Sign In</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="row g-4">
+                    <!-- Benefits Section -->
+                    <div class="col-12">
+                        <div class="card card-custom">
+                            <div class="card-body p-4">
+                                <h3 class="card-title mb-4 text-center">
+                                    <i class="fas fa-star me-2"></i>Why Join Us?
+                                </h3>
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <div class="features-icon mx-auto">
+                                            <i class="fas fa-robot"></i>
+                                        </div>
+                                        <h5 class="text-center">AI-Powered Optimization</h5>
+                                        <p class="text-center">Advanced algorithms to maximize production efficiency</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="features-icon mx-auto">
+                                            <i class="fas fa-chart-pie"></i>
+                                        </div>
+                                        <h5 class="text-center">Real-time Analytics</h5>
+                                        <p class="text-center">Instant insights into your production metrics</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="features-icon mx-auto">
+                                            <i class="fas fa-calendar-check"></i>
+                                        </div>
+                                        <h5 class="text-center">Smart Scheduling</h5>
+                                        <p class="text-center">Optimized production schedules based on demand</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="features-icon mx-auto">
+                                            <i class="fas fa-truck"></i>
+                                        </div>
+                                        <h5 class="text-center">Supply Chain Integration</h5>
+                                        <p class="text-center">Seamless connection with your existing systems</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonial -->
+                    <div class="col-12">
+                        <div class="card card-custom">
+                            <div class="card-body p-4">
+                                <h3 class="card-title mb-4 text-center">
+                                    <i class="fas fa-quote-left me-2"></i>Success Stories
+                                </h3>
+                                <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+                                    <div class="carousel-inner">
+                                        <div class="carousel-item active">
+                                            <div class="text-center">
+                                                <img src="/api/placeholder/80/80" class="rounded-circle mb-3" alt="testimonial">
+                                                <p class="fst-italic">"We reduced production costs by 15% within the first quarter of implementation."</p>
+                                                <p class="fw-bold">Sarah Johnson, Operations Director</p>
+                                                <p class="text-muted">Acme Manufacturing</p>
+                                            </div>
+                                        </div>
+                                        <div class="carousel-item">
+                                            <div class="text-center">
+                                                <img src="/api/placeholder/80/80" class="rounded-circle mb-3" alt="testimonial">
+                                                <p class="fst-italic">"The inventory optimization feature saved us from countless stockouts during peak season."</p>
+                                                <p class="fw-bold">Mike Chen, Supply Chain Manager</p>
+                                                <p class="text-muted">Global Electronics</p>
+                                            </div>
+                                        </div>
+                                        <div class="carousel-item">
+                                            <div class="text-center">
+                                                <img src="/api/placeholder/80/80" class="rounded-circle mb-3" alt="testimonial">
+                                                <p class="fst-italic">"Setup was quick and our team was fully operational within days, not weeks."</p>
+                                                <p class="fw-bold">Robert Miller, CTO</p>
+                                                <p class="text-muted">Precision Parts Co.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Previous</span>
+                                    </button>
+                                    <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Next</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Terms Modal -->
+    <div class="modal fade" id="termsModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Terms and Conditions</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h5>1. Service Agreement</h5>
+                    <p>By creating an account, you agree to use our production scheduling service in accordance with all applicable laws and regulations.</p>
+                    
+                    <h5>2. Data Usage</h5>
+                    <p>We collect and process production data to provide optimization services. Your data remains confidential and will not be shared with third parties without consent.</p>
+                    
+                    <h5>3. Subscription Terms</h5>
+                    <p>All plans are billed monthly and can be canceled with 30 days notice. No refunds will be provided for partial month usage.</p>
+                    
+                    <h5>4. System Availability</h5>
+                    <p>We strive for 99.9% uptime, but cannot guarantee uninterrupted service. Scheduled maintenance will be announced at least 48 hours in advance.</p>
+                    
+                    <h5>5. User Responsibilities</h5>
+                    <p>You are responsible for maintaining the confidentiality of your account credentials and for all activities that occur under your account.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-custom" data-bs-dismiss="modal">I Understand</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-3 footer">
+        <div class="container">
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <h5><i class="fas fa-industry me-2"></i>Production Intelligence Hub</h5>
+                    <p class="small">Intelligent Manufacturing Optimization</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white">About Us</a></li>
+                        <li><a href="#" class="text-white">Features</a></li>
+                        <li><a href="#" class="text-white">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Contact Us</h5>
+                    <p class="small">
+                        <i class="fas fa-envelope me-2"></i>support@productionintelligence.com<br>
+                        <i class="fas fa-phone me-2"></i>+1 (800) 555-1234
+                    </p>
+                </div>
+            </div>
+            <hr class="my-2">
+            <p class="mb-0 small">© 2024 Intelligent Production Systems. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap & Dependencies -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const registrationForm = document.getElementById('registrationForm');
+            
+            registrationForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Form validation
+                const password = document.getElementById('password').value;
+                const confirmPassword = document.getElementById('confirmPassword').value;
+                
+                if (password !== confirmPassword) {
+                    alert('Passwords do not match!');
+                    return;
+                }
+                
+                // Visual feedback during form submission
+                const submitButton = registrationForm.querySelector('button[type="submit"]');
+                submitButton.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Processing...';
+                submitButton.disabled = true;
+                
+                // Simulate form submission
+                setTimeout(function() {
+                    // Success animation
+                    submitButton.innerHTML = '<i class="fas fa-check me-2"></i>Registration Successful!';
+                    submitButton.classList.remove('btn-custom');
+                    submitButton.classList.add('btn-success');
+                    
+                    // Redirect to dashboard after a short delay
+                    setTimeout(function() {
+                        window.location.href = 'dashboard.html';
+                    }, 1500);
+                }, 2000);
+            });
+            
+            // Add password strength indicator
+            const passwordInput = document.getElementById('password');
+            passwordInput.addEventListener('input', function() {
+                const password = this.value;
+                const strength = calculatePasswordStrength(password);
+                
+                // Update UI with strength indicator (could be implemented with a progress bar)
+                // This is a simplified example
+                if (strength === 'weak') {
+                    this.style.borderColor = '#dc3545';
+                } else if (strength === 'medium') {
+                    this.style.borderColor = '#ffc107';
+                } else {
+                    this.style.borderColor = '#28a745';
+                }
+            });
+            
+            function calculatePasswordStrength(password) {
+                if (password.length < 6) return 'weak';
+                if (password.length < 10) return 'medium';
+                return 'strong';
+            }
+        });
+    </script>
+</body>
+</html>
